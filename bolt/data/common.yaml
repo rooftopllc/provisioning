@@ -1,0 +1,47 @@
+---
+puppet_classes:
+    - "zsh"
+    - "fish"
+    - "ohmyzsh"
+    - "systemd"
+    - "apt"
+    - "letsencrypt"
+
+letsencrypt::package_ensure: latest
+letsencrypt::config:
+    email: andrew@rooftopllc.net
+    server: 'https://acme-v02.api.letsencrypt.org/directory'
+
+primary_interface: {}
+
+ohmyzsh::source: 'https://github.com/ohmyzsh/ohmyzsh.git'
+
+ohmyzsh::installs:
+    andrew:
+        set_sh: true
+
+ohmyzsh::plugins:
+    andrew:
+        plugins: [ 'git', 'ssh-agent', 'sudo', 'tmux' ]
+
+apt::purge:
+    sources.list: true
+    sources.list.d: true
+    preferences: true
+    preferences.d: true
+
+apt::sources:
+    'debian':
+        location: "http://deb.debian.org/debian/"
+        release: unstable
+        repos: "main contrib"
+        include:
+            deb:
+                true
+
+systemd::manage_timesyncd: true
+systemd::ntp_server:
+    - 0.pool.ntp.org
+    - 1.pool.ntp.org
+    - 2.pool.ntp.org
+    - 3.pool.ntp.org

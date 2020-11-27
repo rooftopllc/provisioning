@@ -1,0 +1,13 @@
+version: 2
+
+config:
+    ssh:
+        run-as: root
+
+groups:
+    - name: linux
+      targets:
+          - vega.rtnet.io
+    - name: openbsd
+      targets:
+          - edge-vultr-gw1.rtnet.io
