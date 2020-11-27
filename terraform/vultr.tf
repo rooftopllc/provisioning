@@ -1,5 +1,12 @@
 provider "vultr" {}
 
+resource "vultr_ssh_key" "sshkey" {
+  count = length(var.ssh_keys)
+
+  name = var.ssh_keys[count.index].name
+  ssh_key = var.ssh_keys[count.index].key
+}
+
 data "vultr_os" "openbsd" {
   filter {
     name   = "name"
@@ -36,4 +43,7 @@ resource "vultr_server" "edge-vultr-gw1" {
   hostname = "edge-vultr-gw1.rtnet.io" 
   enable_ipv6 = true
 
+  label = "edge-vultr-gw1.rtnet.io"
+
+  ssh_key_ids = vultr_ssh_key.sshkey[*].id
 }
