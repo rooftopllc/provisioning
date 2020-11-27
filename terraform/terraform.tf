@@ -3,7 +3,7 @@ terraform {
     organization = "rooftop"
 
     workspaces {
-      name = "terraform"
+      name = "provisioning"
     }
   }
 }
