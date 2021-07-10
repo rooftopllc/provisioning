@@ -66,6 +66,13 @@ resource "cloudflare_record" "orion-oob" {
   value = "2602:fc5a:0:100:ae1f:6bff:fe14:1348"
 }
 
+resource "cloudflare_record" "polar" {
+  zone_id = cloudflare_zone.rooftop.id
+  name = "polar"
+  type = "AAAA"
+  value = "2602:fc5a:0:300::1"
+}
+
 resource "cloudflare_record" "polar-oob" {
   zone_id = cloudflare_zone.rooftop.id
   name = "polar-oob"
