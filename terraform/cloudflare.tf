@@ -1,5 +1,17 @@
+variable "cloudflare_email" {
+  type = string
+  description = "CloudFlare Email address"
+  default = "andrew@forgue.io"
+}
+
+variable "cloudflare_api_key" {
+  type = string
+  description = "CloudFlare API Key"
+}
+
 provider "cloudflare" {
-  version = "~> 2.0"
+  email   = var.cloudflare_email
+  api_key = var.cloudflare_api_key
 }
 
 resource "cloudflare_zone" "rooftop" {
@@ -48,6 +60,7 @@ resource "cloudflare_record" "ussea1_compute_gw" {
 }
 
 resource "cloudflare_record" "ussea1_infra_gw" {
+  zone_id = cloudflare_zone.rooftop.id
   name = "ussea1-infra-gw"
   type = "AAAA"
   value = "2602:fc5a:0:300::"
