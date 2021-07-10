@@ -59,6 +59,27 @@ resource "cloudflare_record" "ussea1_compute_gw" {
   value = "2602:fc5a:0:200::"
 }
 
+resource "cloudflare_record" "orion-oob" {
+  zone_id = cloudflare_zone.rooftop.id
+  name = "orion-oob"
+  type = "AAAA"
+  value = "2602:fc5a:0:100:ae1f:6bff:fe14:1348"
+}
+
+resource "cloudflare_record" "polar-oob" {
+  zone_id = cloudflare_zone.rooftop.id
+  name = "polar-oob"
+  type = "AAAA"
+  value = "2602:fc5a:0:100:ae1f:6bff:fe11:dcb2"
+}
+
+#resource "cloudflare_record" "iceberg-oob" {
+#  zone_id = cloudflare_zone.rooftop.id
+#  name = "iceberg-oob"
+#  type = "AAAA"
+#  value = ""
+#}
+
 resource "cloudflare_record" "ussea1_infra_gw" {
   zone_id = cloudflare_zone.rooftop.id
   name = "ussea1-infra-gw"
