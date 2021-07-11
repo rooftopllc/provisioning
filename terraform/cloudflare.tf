@@ -20,16 +20,16 @@ resource "cloudflare_zone" "rooftop" {
 
 resource "cloudflare_record" "ussea1_rooftop_net_ns1" {
   zone_id = cloudflare_zone.rooftop.id
-  name = "ussea1.rooftop.net"
+  name = "ussea1"
   type = "NS"
-  value = "ns1"
+  value = "ns1.rooftop.net"
 }
 
 resource "cloudflare_record" "ussea1_rooftop_net_ns2" {
   zone_id = cloudflare_zone.rooftop.id
-  name = "ussea1.rooftop.net"
+  name = "ussea1"
   type = "NS"
-  value = "ns2"
+  value = "ns2.rooftop.net"
 }
 
 resource "cloudflare_record" "ns1" {
